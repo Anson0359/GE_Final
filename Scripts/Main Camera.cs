@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour
     private float camHalfHeight;
     private float camHalfWidth;
 
+    #region Mono
     void Start()
     {
         Camera cam = Camera.main;
@@ -38,4 +39,14 @@ public class CameraFollow : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, clampedPosition, smoothSpeed);
         transform.position = smoothedPosition;
     }
+    #endregion
+
+    #region Function
+    public void Init(Transform follow, Vector2 leftBottom, Vector2 rightUp)
+    {
+        target = follow;
+        minBounds = leftBottom;
+        maxBounds = rightUp;
+    }
+    #endregion
 }
