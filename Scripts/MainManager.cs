@@ -16,7 +16,7 @@ public class MainManager : MonoBehaviour
 
     //[SerializeField] private GameObject homePage = null;
     [SerializeField] private GameObject loadingPage = null;
-    [SerializeField] private GameObject setingUI = null;
+    [SerializeField] private GameObject settingUI = null;
     [SerializeField] private List<GameObject> mapPrefabList = new List<GameObject>();
 
     private Map_Type nowMap = Map_Type.MAP_1;
@@ -32,14 +32,14 @@ public class MainManager : MonoBehaviour
         loadingPage.SetActive(active);
     }
 
-    public void SetSetingUI(bool active)
+    public void SetSettingUI(bool active)
     {
-        setingUI.SetActive(active);
+        settingUI.SetActive(active);
     }
 
-    public bool IsOpenSetingUI()
+    public bool IsOpenSettingUI()
     {
-        return setingUI.activeInHierarchy;
+        return settingUI.activeInHierarchy;
     }
 
 
