@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Button closeBtn = null;
+
+    private void Awake()
     {
-        
+        closeBtn.onClick.AddListener(CloseUI);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CloseUI()
     {
-        
+        gameObject.SetActive(false);
     }
 }
