@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static MainManager;
 
 public class MainManager : MonoBehaviour
 {
@@ -8,18 +10,28 @@ public class MainManager : MonoBehaviour
 
     public enum Map_Type
     {
-        Home,
-        MAP_1,
-        MAP_2, 
-        MAP_3
+        HomePage = 0,
+        Village = 1,
+        MAP_2 = 2, 
+        MAP_3 = 3
     }
 
-    //[SerializeField] private GameObject homePage = null;
+    [SerializeField] private Transform cavasRoot = null;
+    [SerializeField] private Transform NGUIRoot = null;
     [SerializeField] private GameObject loadingPage = null;
     [SerializeField] private GameObject settingUI = null;
     [SerializeField] private List<GameObject> mapPrefabList = new List<GameObject>();
+    private GameObject nowMapObj = null;
 
-    private Map_Type nowMap = Map_Type.MAP_1;
+    private Map_Type nowMap = Map_Type.HomePage;
+    
+
+    private void Awake()
+    {
+        nowMapObj = Instantiate(mapPrefabList[(int)Map_Type.HomePage]);
+        HomePage obj = nowMapObj.GetComponent<HomePage>();
+
+    }
 
 
 
@@ -37,10 +49,10 @@ public class MainManager : MonoBehaviour
         settingUI.SetActive(active);
     }
 
-    public bool IsOpenSettingUI()
-    {
-        return settingUI.activeInHierarchy;
-    }
+    //public bool IsOpenSettingUI()
+    //{
+    //    return settingUI.activeInHierarchy;
+    //}
 
 
 
@@ -52,14 +64,44 @@ public class MainManager : MonoBehaviour
             return;
         }
 
-        switch(type)
+        GameObject newMap = null;
+        switch (type)
         {
-            case Map_Type.MAP_1:
+            case Map_Type.HomePage:
+                newMap = Instantiate(mapPrefabList[(int)Map_Type.HomePage], cavasRoot);
+                if (newMap == null)
+                {
+                    Debug.LogError($"[MainManager] CreateMap {Map_Type.HomePage.ToString()} failed");
+                    return;
+                }
+                RemoveNowMap();
+                nowMapObj = newMap;
+                break;
+            case Map_Type.Village:
+                newMap = Instantiate(mapPrefabList[(int)Map_Type.Village], NGUIRoot);
+                if (newMap == null)
+                {
+                    Debug.LogError($"[MainManager] CreateMap {Map_Type.Village.ToString()} failed");
+                    return;
+                }
+                RemoveNowMap();
+                nowMapObj = newMap;
                 break;
             case Map_Type.MAP_2:
+
                 break;
             case Map_Type.MAP_3:
+
                 break;
+        }
+        nowMapObj = newMap;
+    }
+    
+    private void RemoveNowMap()
+    {
+        if( nowMapObj != null)
+        {
+            Destroy(nowMapObj);
         }
     }
     

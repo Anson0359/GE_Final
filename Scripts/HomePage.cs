@@ -18,7 +18,9 @@ public class HomePage : MonoBehaviour
 
     private void PlayGame()
     {
-
+        Debug.Log("[HomePage] Start!!");
+        MainManager.Instance.SetLoadingPage(true);
+        MainManager.Instance.SwichMap(MainManager.Map_Type.Village);
     }
 
     private void OpenSettingUI()
