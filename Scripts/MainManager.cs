@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static MainManager;
 
 public class MainManager : MonoBehaviour
 {
@@ -29,8 +28,7 @@ public class MainManager : MonoBehaviour
     private void Awake()
     {
         nowMapObj = Instantiate(mapPrefabList[(int)Map_Type.HomePage]);
-        HomePage obj = nowMapObj.GetComponent<HomePage>();
-
+        //HomePage obj = nowMapObj.GetComponent<HomePage>();
     }
 
 
