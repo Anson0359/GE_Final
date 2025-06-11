@@ -18,6 +18,7 @@ public class HomePage : MonoBehaviour
     {
         Debug.Log("[HomePage] Start!!");
         MainManager.Instance.SetLoadingPage(true);
+        MainManager.Instance.SetHomePage(false);
         MainManager.Instance.SwichMap(MainManager.Map_Type.Village);
     }
 

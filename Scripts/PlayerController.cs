@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb = null;
     [SerializeField] private Animator anim = null;
+    private bool canMove = false;
 
 
     private float moveSpeed = 3f;
@@ -20,7 +21,8 @@ public class PlayerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
-
+        //if (canMove)
+        //{
         // 先判斷方向（這段不能動）
         if (moveInput.x > 0)
             anim.SetInteger("Direction", 2); // 右
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("Direction", 3); // 上
         else if (moveInput.y < 0)
             anim.SetInteger("Direction", 0); // 下
+        //}
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -50,5 +54,10 @@ public class PlayerController : MonoBehaviour
     {
         // 移動角色
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void SetCanMove(bool canMove)
+    {
+        this.canMove = canMove;
     }
 }

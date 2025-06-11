@@ -5,7 +5,7 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour
 {
     [Header("相機設定")]
-    [SerializeField] private Transform target;  // 要跟隨的物件
+    [SerializeField] private GameObject target;  // 要跟隨的物件
     [SerializeField] private float smoothSpeed = 0.125f;
     [SerializeField] private Vector3 offset = new Vector3(0, 0, -10);
 
@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour
         if (target == null) 
             return;
 
-        Vector3 desiredPosition = target.position + offset;
+        Vector3 desiredPosition = target.transform.position + offset;
 
         // 限制邊界（Clamp）
         float clampedX = Mathf.Clamp(desiredPosition.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
@@ -43,8 +43,9 @@ public class CameraFollow : MonoBehaviour
     #endregion
 
     #region Function
-    public void Init(Transform follow, Vector2 leftBottom, Vector2 rightUp)
+    public void Init(GameObject follow, Vector2 leftBottom, Vector2 rightUp)
     {
+        Debug.Log($"follow = {follow.gameObject.name}");
         target = follow;
         minBounds = leftBottom;
         maxBounds = rightUp;
