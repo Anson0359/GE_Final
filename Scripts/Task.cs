@@ -37,5 +37,4 @@ public class Task : MonoBehaviour
             time--;
         }
     }
-
 }

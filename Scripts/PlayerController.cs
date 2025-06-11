@@ -7,15 +7,12 @@ public class PlayerController : MonoBehaviour
 
 
     private float moveSpeed = 3f;
-
     private Vector2 moveInput;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        
-
     }
 
     void Update()

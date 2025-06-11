@@ -5,7 +5,7 @@ public class Village : MonoBehaviour
 {
     [SerializeField] private TextAsset talkContent = null;
 
-    private void Init()
+    public void Init()
     {
         if (talkContent != null)
         {
